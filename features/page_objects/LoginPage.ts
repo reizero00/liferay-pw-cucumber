@@ -1,4 +1,4 @@
-import { chromium, Page, Browser, expect } from "@playwright/test"
+import { Page, expect } from "@playwright/test"
 
 export class LoginPage {
     constructor(private readonly page: Page) { }

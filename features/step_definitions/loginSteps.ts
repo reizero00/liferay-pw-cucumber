@@ -1,5 +1,4 @@
 import { Given, When, Then } from "@cucumber/cucumber"
-import { expect } from "@playwright/test"
 import { LoginPage } from "../page_objects/loginPage";
 import { BannerFragment } from "../page_objects/BannerFragment";
 
