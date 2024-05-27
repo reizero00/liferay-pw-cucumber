@@ -12,14 +12,29 @@ Given('the User enters {string} in the Password text field', async function (pas
     await loginPage.fillPassword(password);
 });
 
-When('the User clicks the Sign In link', async function () {
+Given('the User is on the Login Page', async function () {
     const loginPage = new LoginPage(this.page);
-    await loginPage.clickSignInLink();
+    await loginPage.openLoginPage();
 });
 
-When('the User clicks the Sign In button', async function () {
+When('the User clicks the Sign In link', async function () {
+    const bannerFragment = new BannerFragment(this.page);
+    await bannerFragment.clickSignInLink();
+});
+
+When('the User clicks the Sign In button in the Login modal', async function () {
     const loginPage = new LoginPage(this.page);
-    await loginPage.clickSignInButton();
+    await loginPage.clickModalSignInButton();
+});
+
+When('the User clicks the Sign In button in the Login portlet', async function () {
+    const loginPage = new LoginPage(this.page);
+    await loginPage.clickPortletSignInButton();
+});
+
+When('the User clicks the Remember Me checkbox', async function () {
+    const loginPage = new LoginPage(this.page);
+    await loginPage.clickRememberMeCheckbox();
 });
 
 Then(/^the User (should|should not) see the user profile menu$/, async function (visibility: string) {
@@ -34,5 +49,5 @@ Then(/^the User (should|should not) see the user profile menu$/, async function 
 
 Then('the User should see the error {string}', async function (incorrectPasswordError) {
     const loginPage = new LoginPage(this.page);
-    await loginPage.assertIncorrectPasswordError(incorrectPasswordError);
+    await loginPage.assertPageError(incorrectPasswordError);
 });

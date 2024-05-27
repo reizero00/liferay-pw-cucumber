@@ -7,13 +7,14 @@ Given('Browser is open to {string}', async function (url) {
 });
 
 Given('{string} is logged in with the password {string}', async function (emailAddress, password) {
+    const bannerFragment = new BannerFragment(this.page);
+    await bannerFragment.clickSignInLink();
+
     const loginPage = new LoginPage(this.page);
-    
-    await loginPage.clickSignInLink();
     await loginPage.fillEmailAddress(emailAddress);
     await loginPage.fillPassword(password);
-    await loginPage.clickSignInButton();
+    await loginPage.clickRememberMeCheckbox();
+    await loginPage.clickModalSignInButton();
 
-    const bannerFragment = new BannerFragment(this.page);
     await bannerFragment.assertUserAvatarVisible();
 });
