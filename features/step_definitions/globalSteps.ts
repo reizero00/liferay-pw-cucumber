@@ -3,7 +3,7 @@ import { LoginPage } from "../page_objects/loginPage";
 import { BasePage } from "../page_objects/BasePage";
 import { BannerFragment } from "../page_objects/BannerFragment";
 import { CompanyAPIs } from "../page_objects/CompanyAPIs";
-import { SiteAPIs } from "../page_objects/SiteAPI";
+import { SiteAPIs } from "../apis/SiteAPI";
 
 Given('Browser is open to {string}', async function (url: string) {
     await this.page.goto(url)
@@ -21,14 +21,4 @@ Given('{string} is logged in with the password {string}', async function (emailA
     
     const bannerFragment = new BannerFragment(this.page);
     await bannerFragment.assertUserAvatarVisible();
-});
-
-// Given('I get the company ID', async function () {
-//     const companyAPIs = new CompanyAPIs();
-//     await companyAPIs.getCompanyId();
-// });
-
-Given('I get the site ID', async function () {
-    const siteAPIs = new SiteAPIs();
-    await siteAPIs.getSiteByName("test site");
 });
