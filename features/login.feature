@@ -2,7 +2,6 @@ Feature: Login
   Users should be able to Sign In to Liferay using an email address by default
 
   Background: 
-    * I get the site ID
     * Browser is open to "http://localhost:8080"
 
   Scenario: Can login using an accepted email and password

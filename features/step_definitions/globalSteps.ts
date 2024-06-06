@@ -22,3 +22,8 @@ Given('{string} is logged in with the password {string}', async function (emailA
     const bannerFragment = new BannerFragment(this.page);
     await bannerFragment.assertUserAvatarVisible();
 });
+
+Given('The test site: {string} is created', async function (siteName: string) {
+    const siteAPIs = new SiteAPIs();
+    await siteAPIs.postSite(siteName);
+});

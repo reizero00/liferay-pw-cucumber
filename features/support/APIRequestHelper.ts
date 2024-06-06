@@ -2,7 +2,7 @@ import { APIRequestContext, expect, request } from "@playwright/test"
 
 export class APIRequestHelper {
 
-    async getRequest(endpoint: string, data?) {
+    async deleteRequest(endpoint: string, siteId: number) {
         const apiRequestContext: APIRequestContext = await request.newContext({
             baseURL: "http://test@liferay.com:test@localhost:8080",
             extraHTTPHeaders: {
@@ -10,7 +10,19 @@ export class APIRequestHelper {
                 "Content-Type": "application/json"
             },
         });
+        const response = await apiRequestContext.delete(endpoint + siteId);
+        return response;
+    }
 
+    async getRequest(endpoint: string, data?: any) {
+        const apiRequestContext: APIRequestContext = await request.newContext({
+            baseURL: "http://test@liferay.com:test@localhost:8080",
+            extraHTTPHeaders: {
+                accept: "application/json",
+                "Content-Type": "application/json"
+            },
+        });
+        
         if (data !== undefined) {
             const response = await apiRequestContext.get(endpoint, { data: JSON.stringify(data) });
             return response;
@@ -20,8 +32,8 @@ export class APIRequestHelper {
         }
         
     }
-
-    async postRequest(endpoint: string, data) {
+    
+    async postRequest(endpoint: string, data: any) {
         const apiRequestContext: APIRequestContext = await request.newContext({
             baseURL: "http://test@liferay.com:test@localhost:8080",
             extraHTTPHeaders: {
@@ -33,3 +45,4 @@ export class APIRequestHelper {
         return response;
     }
 }
+   

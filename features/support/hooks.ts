@@ -1,5 +1,6 @@
 const { Before, After, Status } = require("@cucumber/cucumber");
 const playwright = require('@playwright/test');
+import { SiteAPIs } from "../apis/SiteAPI";
 
 interface CustomWorld {
   browser: any;
@@ -20,7 +21,9 @@ After(async function (this: CustomWorld, { pickle, result }: { pickle: any, resu
     const img = await this.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
     await this.attach(img, "image/png")
   }
+  const siteAPIs = new SiteAPIs();
 
+  await siteAPIs.tearDownSites();
   await this.page.close();
   await this.browser.close();
 });
