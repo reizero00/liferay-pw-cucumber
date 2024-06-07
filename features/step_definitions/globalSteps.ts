@@ -1,9 +1,8 @@
 import { Given } from "@cucumber/cucumber"
+import { SiteAPIs } from "../apis/SiteAPI";
 import { LoginPage } from "../page_objects/loginPage";
 import { BasePage } from "../page_objects/BasePage";
 import { BannerFragment } from "../page_objects/BannerFragment";
-import { CompanyAPIs } from "../page_objects/CompanyAPIs";
-import { SiteAPIs } from "../apis/SiteAPI";
 
 Given('Browser is open to {string}', async function (url: string) {
     await this.page.goto(url)
