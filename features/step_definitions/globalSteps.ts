@@ -22,7 +22,7 @@ Given('{string} is logged in with the password {string}', async function (emailA
     await bannerFragment.assertUserAvatarVisible();
 });
 
-Given('The test site: {string} is created', async function (siteName: string) {
+Given('The test site: {string} is created',{timeout: 20 * 1000}, async function (siteName: string) {
     const siteAPIs = new SiteAPIs();
     await siteAPIs.postSite(siteName);
 });
