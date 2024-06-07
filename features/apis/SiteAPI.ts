@@ -1,7 +1,7 @@
 import { APIRequestContext, expect, request } from "@playwright/test"
+import { APIRequestHelper } from "../support/APIRequestHelper";
 import { CompanyAPIs } from "./companyAPIs";
 import { JSONPath } from 'jsonpath-plus'
-import { APIRequestHelper } from "../support/APIRequestHelper";
 
 export class SiteAPIs {
     private readonly baseURL = "http://test@liferay.com:test@localhost:8080";
