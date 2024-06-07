@@ -10,7 +10,7 @@ export class APIRequestHelper {
                 "Content-Type": "application/json"
             },
         });
-        const response = await apiRequestContext.delete(endpoint + siteId);
+        const response = await apiRequestContext.delete(endpoint + siteId, { timeout: 30000});
         return response;
     }
 

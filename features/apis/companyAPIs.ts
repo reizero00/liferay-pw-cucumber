@@ -7,11 +7,10 @@ export class CompanyAPIs {
     async getCompanyId() {
         const apiRequestHelper = new APIRequestHelper();
         const response = await apiRequestHelper.getRequest("/api/jsonws/company/get-companies")
-       
+
         if (response.ok()) {
             const responseJSON = await response.json();
             const companyId = responseJSON[0].companyId;
-            console.log("Stored companyId: " + companyId);
             return companyId;
         } else {
             console.log(response);
