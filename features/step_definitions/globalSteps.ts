@@ -1,6 +1,6 @@
 import { Given } from "@cucumber/cucumber"
 import { SiteAPIs } from "../apis/SiteAPI";
-import { LoginPage } from "../page_objects/loginPage";
+import { LoginPage } from "../page_objects/LoginPage";
 import { BasePage } from "../page_objects/BasePage";
 import { BannerFragment } from "../page_objects/BannerFragment";
 

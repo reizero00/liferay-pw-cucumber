@@ -1,6 +1,6 @@
 import { APIRequestContext, expect, request } from "@playwright/test"
 import { APIRequestHelper } from "../support/APIRequestHelper";
-import { CompanyAPIs } from "./companyAPIs";
+import { CompanyAPIs } from "./CompanyAPIs";
 import { JSONPath } from 'jsonpath-plus'
 
 export class SiteAPIs {

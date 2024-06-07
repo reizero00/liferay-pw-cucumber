@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@cucumber/cucumber"
-import { LoginPage } from "../page_objects/loginPage";
+import { LoginPage } from "../page_objects/LoginPage";
 import { BannerFragment } from "../page_objects/BannerFragment";
 
 Given('the User is on the Login Page', async function () {
