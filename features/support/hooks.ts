@@ -1,16 +1,14 @@
-const { Before, After, Status } = require("@cucumber/cucumber");
+const { Before, After, Status, setDefaultTimeout } = require("@cucumber/cucumber");
 const playwright = require('@playwright/test');
 import { SiteAPIs } from "../apis/SiteAPI";
-import { test } from "@playwright/test"
+
+setDefaultTimeout(60 * 1000);
 
 interface CustomWorld {
   browser: any;
   page: any;
   attach: any;
 }
-
-
-
 Before(async function (this: CustomWorld) {
   this.browser = await playwright.chromium.launch();
 
@@ -26,6 +24,6 @@ After(async function (this: CustomWorld, { pickle, result }: { pickle: any, resu
   const siteAPIs = new SiteAPIs();
 
   await siteAPIs.tearDownSites();
-  await this.page.close({ timeout: 30000 });
-  await this.browser.close({ timeout: 30000 });
+  await this.page.close();
+  await this.browser.close();
 });

@@ -86,17 +86,12 @@ export class SiteAPIs {
         const sitesIndexArray = await this.getSitesToTeardown();
 
         if (sitesIndexArray?.length > 0) {
-            // concurrent deletes (flakey)
-            // const deletionPromises = sitesIndexArray.map((siteId: number) => this.deleteSite(siteId));
+            const deletionPromises = sitesIndexArray.map((siteId: number) => this.deleteSite(siteId));
 
-            // await Promise.all(deletionPromises);
+            await Promise.all(deletionPromises);
 
-            // await console.log('All sites deleted successfully!');
-            for (const siteId of sitesIndexArray) {
-                await this.deleteSite(siteId);
-                console.log("Deleted site:" + siteId);
-            }
+            console.log('All sites deleted successfully!');
         }
-        
+
     }
 }
