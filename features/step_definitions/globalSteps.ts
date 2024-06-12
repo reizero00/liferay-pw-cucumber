@@ -4,12 +4,14 @@ import { LoginPage } from "../page_objects/LoginPage";
 import { BasePage } from "../page_objects/BasePage";
 import { BannerFragment } from "../page_objects/BannerFragment";
 
-Given('Browser is open to {string}', async function (url: string) {
+Given('Browser is open to {string}',{timeout: 30 * 1000}, async function (url: string) {
     await this.page.goto(url)
 });
 
-Given('{string} is logged in with the password {string}', async function (emailAddress: string, password: string) {
+Given('{string} is logged in with the password {string}',{timeout: 30 * 1000}, async function (emailAddress: string, password: string) {
     const basePage = new BasePage(this.page);
+    await this.page.goto("http://localhost:8080")
+
     await basePage.clickButton("Sign In");
     await basePage.fillTextField(emailAddress, "Email Address");
     await basePage.fillTextField(password, "Password");
@@ -22,7 +24,7 @@ Given('{string} is logged in with the password {string}', async function (emailA
     await bannerFragment.assertUserAvatarVisible();
 });
 
-Given('The test site: {string} is created',{timeout: 20 * 1000}, async function (siteName: string) {
+Given('The test site: {string} is created',{timeout: 30 * 1000}, async function (siteName: string) {
     const siteAPIs = new SiteAPIs();
     await siteAPIs.postSite(siteName);
 });

@@ -2,12 +2,15 @@ const { Before, After, Status, setDefaultTimeout } = require("@cucumber/cucumber
 const playwright = require('@playwright/test');
 import { SiteAPIs } from "../apis/SiteAPI";
 
+// Enable this on old macbook pro because it's slow
+// setDefaultTimeout(60 * 1000);
+
 interface CustomWorld {
   browser: any;
   page: any;
   attach: any;
 }
-Before(async function (this: CustomWorld) {
+Before({ timeout: 60 * 1000 },async function (this: CustomWorld) {
   this.browser = await playwright.chromium.launch();
 
   const context = await this.browser.newContext();

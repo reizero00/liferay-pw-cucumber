@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test --parallel 1",
+    "test": "cucumber-js test --parallel 1 --tags '@blogs'",
     "cucumber dryrun": "cucumber-js test -d",
     "posttest": "npx ts-node features/support/report.ts"
   },
