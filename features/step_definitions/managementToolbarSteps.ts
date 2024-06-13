@@ -4,5 +4,5 @@ import { ManagementToolbarFragment } from "../page_objects/ManagementToolbarFrag
 Given('the User clicks the {string} button in the management toolbar', async function (ariaLabel: string) {
     const managementToolbar = new ManagementToolbarFragment(this.page);
 
-    await managementToolbar.clickCreateNewButton('Add Blog Entry');
+    await managementToolbar.clickCreateNewButton(ariaLabel);
 });

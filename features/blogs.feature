@@ -8,4 +8,4 @@ Feature: Blogs
     * Browser is open to "http://localhost:8080/group/test-site/~/control_panel/manage?p_p_id=com_liferay_blogs_web_portlet_BlogsAdminPortlet"
 
   Scenario: Can create a Blog post
-    Given the User clicks the "Add Blog Entry" button
+    Given the User clicks the "Add Blog Entry" button in the management toolbar
