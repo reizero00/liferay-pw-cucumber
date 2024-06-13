@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test --parallel 1 --tags '@blogs'",
+    "test": "cucumber-js test --parallel 1",
+    "test login": "cucumber-js test --parallel 1 --tags '@login'",
+    "test blogs": "cucumber-js test --parallel 1 --tags '@blogs'",
     "cucumber dryrun": "cucumber-js test -d",
     "posttest": "npx ts-node features/support/report.ts"
   },
@@ -19,6 +21,7 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
+    "console-log-colors": "^0.5.0",
     "jsonpath": "^1.1.1",
     "jsonpath-plus": "^9.0.0"
   }

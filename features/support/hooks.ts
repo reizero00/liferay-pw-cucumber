@@ -1,6 +1,7 @@
-const { Before, After, Status, setDefaultTimeout } = require("@cucumber/cucumber");
+const { Before, After, Status } = require("@cucumber/cucumber");
 const playwright = require('@playwright/test');
 import { SiteAPIs } from "../apis/SiteAPI";
+import { green } from "console-log-colors";
 
 // Enable this on old macbook pro because it's slow
 // setDefaultTimeout(60 * 1000);
@@ -10,7 +11,12 @@ interface CustomWorld {
   page: any;
   attach: any;
 }
-Before({ timeout: 60 * 1000 },async function (this: CustomWorld) {
+
+Before({ timeout: 60 * 1000 }, async function (this: CustomWorld, { pickle }: { pickle: any }) {
+  console.log(green("====================================================================================="));
+  console.log(green("Running Scenario: " + `${pickle.name}`));
+  console.log(green("====================================================================================="));
+
   this.browser = await playwright.chromium.launch();
 
   const context = await this.browser.newContext();

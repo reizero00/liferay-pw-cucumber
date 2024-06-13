@@ -1,3 +1,4 @@
+@login
 Feature: Login
   Users should be able to log into Liferay using appropriate credentials 
 

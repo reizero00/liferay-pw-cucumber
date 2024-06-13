@@ -5,7 +5,8 @@ export class LoginPage {
 
     private readonly loginPage = "http://localhost:8080/home?p_p_id=com_liferay_login_web_portlet_LoginPortlet&p_p_lifecycle=0&p_p_state=maximized"
     private readonly modalHeader = this.page.locator('.modal-header');
-    private readonly modalSignInButton = this.page.locator("//div[@class='modal-content']").getByRole('button', { name: "Sign In" });
+    private readonly modalIframe = this.page.locator("//div[@class='modal-content']");
+    private readonly modalSignInButton = this.modalIframe.getByRole('button', { name: "Sign In" });
 
     // Specifically targets the Sign In button in the modal because another one exists on the page
     async clickModalSignInButton() {
