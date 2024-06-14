@@ -1,11 +1,20 @@
-import { Page, expect } from "@playwright/test"
+import { Page, Locator } from "@playwright/test"
+
+interface ManagementToolbarElements {
+    newButton: Locator;
+}
 
 export class ManagementToolbarFragment {
-    constructor(private readonly page: Page) {}
+    private readonly managementToolbar = "//nav[contains(@class, 'management-bar')]";
+    elements: ManagementToolbarElements;
 
-    private readonly managementToolbar = this.page.locator("//nav[contains(@class, 'management-bar')]");
-  
-    async clickCreateNewButton(ariaLabel: string) {
-        await this.managementToolbar.locator("//a[@aria-label='${ariaLabel}']").click();
+    constructor(private readonly page: Page) {
+        this.elements = {
+            newButton: this.page.locator(`${this.managementToolbar}//a[text()='New']`)
+        }
     }
-  }
+
+    async clickCreateNewButton() {
+        await this.elements.newButton.click();
+    }
+}

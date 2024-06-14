@@ -2,9 +2,10 @@ const { Before, After, Status } = require("@cucumber/cucumber");
 const playwright = require('@playwright/test');
 import { SiteAPIs } from "../apis/SiteAPI";
 import { green } from "console-log-colors";
+import { setDefaultTimeout } from "@cucumber/cucumber";
 
 // Enable this on old macbook pro because it's slow
-// setDefaultTimeout(60 * 1000);
+setDefaultTimeout(60 * 1000);
 
 interface CustomWorld {
   browser: any;

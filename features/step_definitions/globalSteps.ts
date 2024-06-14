@@ -1,4 +1,4 @@
-import { Given } from "@cucumber/cucumber"
+import { Given, When, Then } from "@cucumber/cucumber"
 import { SiteAPIs } from "../apis/SiteAPI";
 import { LoginPage } from "../page_objects/LoginPage";
 import { BasePage } from "../page_objects/BasePage";
@@ -21,10 +21,15 @@ Given('{string} is logged in with the password {string}',{timeout: 30 * 1000}, a
     await loginPage.clickModalSignInButton();
     
     const bannerFragment = new BannerFragment(this.page);
-    await bannerFragment.assertUserAvatarVisible();
+    await bannerFragment.assertUserAvatarIsVisible();
 });
 
 Given('The test site: {string} is created',{timeout: 30 * 1000}, async function (siteName: string) {
     const siteAPIs = new SiteAPIs();
     await siteAPIs.postSite(siteName);
+});
+
+Then('I take a screenshot named {string}', async function (screenshotName: string) {
+    const img = await this.page.screenshot({ path: `./test-results/screenshots/${screenshotName}.png`, type: "png" })
+    await this.attach(img, "image/png")
 });

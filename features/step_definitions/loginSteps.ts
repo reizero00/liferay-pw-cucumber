@@ -16,9 +16,9 @@ Then(/^the User (should|should not) see the user profile menu$/, async function 
     const bannerFragment = new BannerFragment(this.page);
 
     if (visibility === "should") {
-        await bannerFragment.assertUserAvatarVisible();
+        await bannerFragment.assertUserAvatarIsVisible();
     } else {
-        await bannerFragment.assertUserAvatarNotVisible();
+        await bannerFragment.assertUserAvatarIsNotVisible();
     }
 });
 
