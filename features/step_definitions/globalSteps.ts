@@ -26,7 +26,7 @@ Given('{string} is logged in with the password {string}',{timeout: 30 * 1000}, a
 
 Given('The test site: {string} is created',{timeout: 30 * 1000}, async function (siteName: string) {
     const siteAPIs = new SiteAPIs();
-    await siteAPIs.postSite(siteName);
+    await siteAPIs.createSite(siteName);
 });
 
 Then('I take a screenshot named {string}', async function (screenshotName: string) {

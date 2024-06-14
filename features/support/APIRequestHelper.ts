@@ -1,47 +1,32 @@
 import { APIRequestContext, request } from "@playwright/test"
 
 export class APIRequestHelper {
+    private readonly baseURL = "http://test@liferay.com:test@localhost:8080";
+    private readonly headers = {
+        accept: "application/json",
+        "Content-Type": "application/json",
+    };
 
     async deleteRequest(endpoint: string, siteId: number) {
-        const apiRequestContext: APIRequestContext = await request.newContext({
-            baseURL: "http://test@liferay.com:test@localhost:8080",
-            extraHTTPHeaders: {
-                accept: "application/json",
-                "Content-Type": "application/json"
-            },
-        });
-        const response = await apiRequestContext.delete(endpoint + siteId);
-        return response;
+        return this.sendRequest("delete", `${endpoint}${siteId}`);
     }
 
     async getRequest(endpoint: string, data?: any) {
-        const apiRequestContext: APIRequestContext = await request.newContext({
-            baseURL: "http://test@liferay.com:test@localhost:8080",
-            extraHTTPHeaders: {
-                accept: "application/json",
-                "Content-Type": "application/json"
-            },
-        });
-        
-        if (data !== undefined) {
-            const response = await apiRequestContext.get(endpoint, { data: JSON.stringify(data) });
-            return response;
-        } else {
-            const response = await apiRequestContext.get(endpoint);
-            return response;
-        }
-        
+        return this.sendRequest("get", endpoint, data);
     }
-    
+
     async postRequest(endpoint: string, data: any) {
+        return this.sendRequest("post", endpoint, data);
+    }
+
+    private async sendRequest(method: string, endpoint: string, data?: any) {
         const apiRequestContext: APIRequestContext = await request.newContext({
-            baseURL: "http://test@liferay.com:test@localhost:8080",
-            extraHTTPHeaders: {
-                accept: "application/json",
-                "Content-Type": "application/json"
-            },
+            baseURL: this.baseURL,
+            extraHTTPHeaders: this.headers,
         });
-        const response = await apiRequestContext.post(endpoint, { data: JSON.stringify(data) });
+
+        const options = data ? { data: JSON.stringify(data) } : undefined;
+        const response = await (apiRequestContext as any)[method](endpoint, options);
         return response;
     }
 }
